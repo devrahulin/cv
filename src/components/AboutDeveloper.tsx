@@ -45,7 +45,7 @@ export function AboutDeveloper() {
         <div className="mb-16">
           <h2 className="text-3xl font-display font-semibold text-zinc-100 tracking-tight mb-4">Engineer Profile</h2>
           <p className="text-zinc-400 max-w-2xl leading-relaxed text-sm">
-            I am Rahul Jangra (builtbyrahulX), an AI/ML specialized systems engineer bridging the gap between rigorous computational models and high-performance native client architecture.
+            I am Rahul Jangra (devrahulin), an AI/ML specialized systems engineer bridging the gap between rigorous computational models and high-performance native client architecture.
           </p>
         </div>
 

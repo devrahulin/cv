@@ -8,7 +8,7 @@ export function Footer() {
         </div>
         
         <div className="flex items-center gap-6">
-          <a href="https://github.com/builtbyrahulX" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors text-sm">
+          <a href="https://github.com/devrahulin" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors text-sm">
             GitHub
           </a>
           <a href="mailto:rahuljangra070407@gmail.com" className="text-zinc-500 hover:text-white transition-colors text-sm">

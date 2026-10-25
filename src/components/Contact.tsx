@@ -86,11 +86,11 @@ export function Contact() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/builtbyrahulX" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-emerald-400 transition-colors group">
+                  <a href="https://github.com/devrahulin" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-emerald-400 transition-colors group">
                     <div className="w-8 h-8 rounded-sm bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-emerald-500/30">
                       <Code size={14} />
                     </div>
-                    github.com/builtbyrahulX
+                    github.com/devrahulin
                   </a>
                 </li>
               </ul>

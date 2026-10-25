@@ -15,24 +15,81 @@ interface Repo {
   updated_at: string;
 }
 
+const FALLBACK_REPOS: Repo[] = [
+  {
+    id: 1,
+    name: 'RTunes',
+    description: 'Aesthetic, high-performance open-source music streaming application and web portal.',
+    language: 'TypeScript',
+    topics: ['react', 'next', 'audio', 'web', 'streaming'],
+    html_url: 'https://github.com/devrahulin/RTunes',
+    homepage: 'https://r-tunes.vercel.app',
+    stargazers_count: 5,
+    forks_count: 1,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: 'Cortex-City',
+    description: 'Cortex City traffic predictive digital twin simulator using machine learning algorithms.',
+    language: 'JavaScript',
+    topics: ['ai', 'ml', 'simulator', 'digital-twin', 'data'],
+    html_url: 'https://github.com/devrahulin/Cortex-City',
+    homepage: 'https://cortex-city-sigma.vercel.app/',
+    stargazers_count: 3,
+    forks_count: 0,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 3,
+    name: 'RTunes-Ads-Website',
+    description: 'Official audio engineering guides, editorial hub, and publisher portal for RahiTunes.',
+    language: 'TypeScript',
+    topics: ['web', 'react', 'audio', 'frontend'],
+    html_url: 'https://github.com/devrahulin/RTunes-Ads-Website',
+    homepage: 'https://r-tunes-ads-website.vercel.app',
+    stargazers_count: 2,
+    forks_count: 0,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 4,
+    name: 'AcousticGuard',
+    description: 'Acoustic detection and machine learning based environment monitoring system.',
+    language: 'Python',
+    topics: ['python', 'ai', 'ml', 'machine-learning', 'sound'],
+    html_url: 'https://github.com/devrahulin/AcousticGuard',
+    homepage: 'https://acousticguard.vercel.app/website/index.html',
+    stargazers_count: 2,
+    forks_count: 0,
+    updated_at: new Date().toISOString()
+  }
+];
+
 export function Projects() {
   const [allRepos, setAllRepos] = useState<Repo[]>([]);
   const [activeTab, setActiveTab] = useState('All Projects');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   const tabs = ['All Projects', 'Web & Cloud', 'AI & ML', 'Systems & Arch'];
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/builtbyrahulX/repos?sort=updated&per_page=20');
-        if (!response.ok) throw new Error('Failed to fetch repositories');
+        const response = await fetch('https://api.github.com/users/devrahulin/repos?sort=updated&per_page=30');
+        if (!response.ok) {
+          throw new Error(`GitHub API HTTP ${response.status}`);
+        }
         const data = await response.json();
         const originalRepos = data.filter((repo: any) => !repo.fork);
-        setAllRepos(originalRepos);
+        if (originalRepos.length > 0) {
+          setAllRepos(originalRepos);
+        } else {
+          setAllRepos(FALLBACK_REPOS);
+        }
       } catch (err: any) {
-        setError(err.message);
+        console.warn('Falling back to curated projects:', err.message);
+        setAllRepos(FALLBACK_REPOS);
       } finally {
         setLoading(false);
       }
@@ -111,10 +168,6 @@ export function Projects() {
             <Loader2 className="animate-spin" size={32} />
             <p className="text-sm font-mono">Syncing repositories from GitHub...</p>
           </div>
-        ) : error ? (
-          <div className="p-6 border border-red-900/50 bg-red-900/10 rounded-sm text-red-400 text-sm">
-            Failed to load projects: {error}. Please try again later.
-          </div>
         ) : repos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-zinc-500 gap-4">
             <p className="text-sm font-mono">No projects found in this category.</p>
@@ -185,7 +238,7 @@ export function Projects() {
         
         <div className="mt-8 flex justify-center">
           <a 
-            href="https://github.com/builtbyrahulX" 
+            href="https://github.com/devrahulin" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs font-mono text-zinc-500 hover:text-emerald-400 transition-colors flex items-center gap-2 border-b border-zinc-800 pb-1"
